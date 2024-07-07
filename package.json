@@ -1,0 +1,45 @@
+{
+  "name": "@irsyadadl/d",
+  "version": "0.0.1",
+  "description": "A CLI for D",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/irsyadadl/d-cli"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "start": "tsc && npm link",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "bin": {
+    "@irsyadadl/d": "./dist/index.js"
+  },
+  "keywords": [],
+  "author": "Irsyad A. Panjaitan",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.14.10",
+    "prettier": "^3.3.2",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^5.1.2",
+    "@irsyadadl/paranoid": "^1.2.0",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.0.0",
+    "commander": "^12.1.0",
+    "embla-carousel-react": "^8.1.6",
+    "framer-motion": "^11.2.13",
+    "input-otp": "^1.2.4",
+    "react-aria-components": "^1.2.1",
+    "sonner": "^1.5.0",
+    "tailwind-merge": "^2.3.0",
+    "tailwind-variants": "^0.2.1",
+    "tailwindcss-animate": "^1.0.7",
+    "tailwindcss-react-aria-components": "^1.1.3"
+  }
+}
