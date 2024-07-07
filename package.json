@@ -11,7 +11,7 @@
   "homepage": "https://d.irsyad.co",
   "scripts": {
     "dev": "tsup --watch",
-    "clean": "rimraf styles && rimraf src/components && rimraf components && rimraf dist",
+    "clean": "rimraf styles && rimraf tailwind.config.ts && rimraf src/components && rimraf components && rimraf dist",
     "build": "npm run clean && tsup",
     "start": "tsc && npm link",
     "format": "prettier --write \"src/**/*.ts\"",
