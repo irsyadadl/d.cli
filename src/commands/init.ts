@@ -7,6 +7,16 @@ import fetch from 'node-fetch'
 export async function init() {
   console.log('Initializing...')
 
+  const configJsExists = fs.existsSync('tailwind.config.js')
+  const configTsExists = fs.existsSync('tailwind.config.ts')
+
+  if (!configJsExists && !configTsExists) {
+    console.log(
+      'No Tailwind configuration file found. Please ensure tailwind.config.ts or tailwind.config.js exists in the root directory.',
+    )
+    return
+  }
+
   const projectType = await select({
     message: 'Select the project type:',
     choices: [
@@ -51,7 +61,7 @@ export async function init() {
     console.log(`Created UI folder at ${uiFolder}`)
   }
 
-  // Handle CSS file placement
+  // Handle CSS file placement (overwrite if it exists)
   const cssSourcePath = 'src/resources/tailwind-css/app.css'
   if (!fs.existsSync(path.dirname(cssLocation))) {
     fs.mkdirSync(path.dirname(cssLocation), { recursive: true })
@@ -59,17 +69,20 @@ export async function init() {
   }
   if (fs.existsSync(cssSourcePath)) {
     const cssContent = fs.readFileSync(cssSourcePath, 'utf8')
-    fs.writeFileSync(cssLocation, cssContent)
+    fs.writeFileSync(cssLocation, cssContent) // Overwrite the existing CSS file
     console.log(`CSS file copied to ${cssLocation}`)
   } else {
     console.log(`Source CSS file does not exist at ${cssSourcePath}`)
   }
 
-  // Copy Tailwind configuration content
+  // Determine the target Tailwind config file based on existing files
+  const tailwindConfigTarget = fs.existsSync('tailwind.config.js') ? 'tailwind.config.js' : 'tailwind.config.ts'
+
+  // Copy Tailwind configuration content (overwrite if it exists)
   if (fs.existsSync(configSourcePath)) {
     const tailwindConfigContent = fs.readFileSync(configSourcePath, 'utf8')
-    fs.writeFileSync('tailwind.config.ts', tailwindConfigContent)
-    console.log(`Tailwind configuration copied to root directory.`)
+    fs.writeFileSync(tailwindConfigTarget, tailwindConfigContent) // Overwrite the existing Tailwind config
+    console.log(`Tailwind configuration copied to ${tailwindConfigTarget}`)
   } else {
     console.log(`Tailwind configuration file does not exist at ${configSourcePath}`)
   }
