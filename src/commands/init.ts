@@ -42,8 +42,8 @@ export async function init() {
     cssLocation = hasSrc ? 'src/styles/app.css' : 'styles/app.css'
     configSourcePath =
       projectType === 'Next.js'
-        ? 'src/resources/tailwind-config/tailwind.config.next.ts'
-        : 'src/resources/tailwind-config/tailwind.config.laravel.ts'
+        ? 'src/resources/tailwind-config/tailwind.config.next.stub'
+        : 'src/resources/tailwind-config/tailwind.config.laravel.stub'
   }
 
   // Ensure the components and UI folders exist
