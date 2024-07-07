@@ -98,6 +98,7 @@ export async function init() {
       fs.writeFileSync(cssLocation, cssContent, { flag: 'w' }) // Overwrite the existing CSS file
       console.log(`CSS file copied to ${cssLocation}`)
     } catch (error) {
+      // @ts-ignore
       console.error(`Failed to write CSS file to ${cssLocation}: ${error.message}`)
     }
   } else {
@@ -109,7 +110,6 @@ export async function init() {
   console.log(`Target Tailwind config file: ${tailwindConfigTarget}`)
 
   // Check if the config source path exists
-  console.log(`Checking if config source path exists: ${configSourcePath}`)
   if (!fs.existsSync(configSourcePath)) {
     console.log(`Source Tailwind config file does not exist at ${configSourcePath}`)
     return
@@ -118,10 +118,9 @@ export async function init() {
   // Copy Tailwind configuration content (always overwrite)
   try {
     const tailwindConfigContent = fs.readFileSync(configSourcePath, 'utf8')
-    console.log(`Read Tailwind config content from ${configSourcePath}`)
     fs.writeFileSync(tailwindConfigTarget, tailwindConfigContent, { flag: 'w' }) // Overwrite the existing Tailwind config
-    console.log(`Tailwind configuration copied to ${tailwindConfigTarget}`)
   } catch (error) {
+    // @ts-ignore
     console.error(`Failed to write Tailwind config to ${tailwindConfigTarget}: ${error.message}`)
   }
 

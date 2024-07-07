@@ -1,3 +1,5 @@
+import fs from 'fs'
+import path from 'path'
 import { components } from '../resources/components'
 import { getWriteComponentPath, writeFile } from '../utils'
 
@@ -8,6 +10,13 @@ async function createComponent(componentName: string) {
 }
 
 export async function add(options: any) {
+  const configFilePath = path.join(process.cwd(), 'd.json')
+
+  if (!fs.existsSync(configFilePath)) {
+    console.log('d.json not found. Please run `npx @irsyadadl/d@latest init` to initialize the project.')
+    return
+  }
+
   for (const component of components) {
     if (component.name === options.component) {
       await createComponent(component.name)
