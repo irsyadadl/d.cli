@@ -104,14 +104,11 @@ export async function init() {
   console.log(`Target Tailwind config file: ${tailwindConfigTarget}`)
 
   // Copy Tailwind configuration content (ask if it should be overwritten)
-  console.log(`Checking if Tailwind config source path exists: ${configSourcePath}`)
-  if (fs.existsSync(configSourcePath)) {
-    const shouldReplaceConfig = fs.existsSync(tailwindConfigTarget)
-      ? await confirm({
-          message: `Tailwind config file already exists at ${tailwindConfigTarget}. Do you want to replace it?`,
-          default: false,
-        })
-      : true
+  if (fs.existsSync(tailwindConfigTarget)) {
+    const shouldReplaceConfig = await confirm({
+      message: `Tailwind config file already exists at ${tailwindConfigTarget}. Do you want to replace it?`,
+      default: false,
+    })
     if (shouldReplaceConfig) {
       try {
         const tailwindConfigContent = fs.readFileSync(configSourcePath, 'utf8')
@@ -126,7 +123,16 @@ export async function init() {
       console.log(`Tailwind config file at ${tailwindConfigTarget} was not replaced.`)
     }
   } else {
-    console.log(`Tailwind configuration file does not exist at ${configSourcePath}`)
+    console.log(`Tailwind config file does not exist at ${tailwindConfigTarget}. Creating a new one.`)
+    try {
+      const tailwindConfigContent = fs.readFileSync(configSourcePath, 'utf8')
+      console.log(`Read Tailwind config content from ${configSourcePath}`)
+      fs.writeFileSync(tailwindConfigTarget, tailwindConfigContent, { flag: 'w' })
+      console.log(`Tailwind configuration copied to ${tailwindConfigTarget}`)
+    } catch (error) {
+      // @ts-ignore
+      console.error(`Failed to write Tailwind config to ${tailwindConfigTarget}: ${error.message}`)
+    }
   }
 
   // Ask for preferred package manager
