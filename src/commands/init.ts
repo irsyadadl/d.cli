@@ -42,14 +42,16 @@ export async function init() {
       message: 'Where would you like to place the CSS file?',
       default: 'styles/app.css',
     })
-    configSourcePath = 'src/resources/tailwind-config/tailwind.config.next.ts'
+    configSourcePath = 'src/resources/tailwind-config/tailwind.config.next.stub'
   }
 
+  // Ensure the components and UI folders exist
   if (!fs.existsSync(uiFolder)) {
     fs.mkdirSync(uiFolder, { recursive: true })
     console.log(`Created UI folder at ${uiFolder}`)
   }
 
+  // Handle CSS file placement
   const cssSourcePath = 'src/resources/tailwind-css/app.css'
   if (!fs.existsSync(path.dirname(cssLocation))) {
     fs.mkdirSync(path.dirname(cssLocation), { recursive: true })
@@ -63,6 +65,7 @@ export async function init() {
     console.log(`Source CSS file does not exist at ${cssSourcePath}`)
   }
 
+  // Copy Tailwind configuration content
   if (fs.existsSync(configSourcePath)) {
     const tailwindConfigContent = fs.readFileSync(configSourcePath, 'utf8')
     fs.writeFileSync('tailwind.config.ts', tailwindConfigContent)
@@ -71,6 +74,7 @@ export async function init() {
     console.log(`Tailwind configuration file does not exist at ${configSourcePath}`)
   }
 
+  // Ask for preferred package manager
   const packageManager = await select({
     message: 'Which package manager do you want to use for installing dependencies?',
     choices: [
@@ -106,12 +110,17 @@ export async function init() {
     shell: true,
   })
 
+  // Wait for the installation to complete before proceeding
+  await new Promise((resolve) => child.on('close', resolve))
+
   const fileUrl = 'https://raw.githubusercontent.com/irsyadadl/d.irsyad.co/master/components/ui/primitive.tsx'
   const response = await fetch(fileUrl)
   const fileContent = await response.text()
   fs.writeFileSync(path.join(uiFolder, 'primitive.tsx'), fileContent)
+  console.log(`primitive.tsx file copied to ${uiFolder}`)
 
-  const config = { ui: path.resolve(uiFolder) } // Save full path to ui folder
+  // Save configuration to d.json with relative path
+  const config = { ui: uiFolder }
   fs.writeFileSync('d.json', JSON.stringify(config, null, 2))
   console.log('Configuration saved to d.json')
 
