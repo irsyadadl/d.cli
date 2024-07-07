@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "tsup --watch",
     "remove-packages": "bun remove @irsyadadl/paranoid clsx cmdk embla-carousel-react framer-motion input-otp react-aria-components sonner tailwind-merge tailwind-variants tailwindcss-animate tailwindcss-react-aria-components",
-    "clean": "rimraf src/components && rimraf styles && rimraf resources && rimraf tailwind.config.ts && rimraf tailwind.config.js && rimraf src/components && rimraf components && rimraf dist && bun run remove-packages",
+    "clean": "rimraf src/components && rimraf styles && rimraf resources && rimraf tailwind.config.ts && rimraf tailwind.config.js && rimraf src/components && rimraf components && rimraf dist && npm run remove-packages",
     "build": "npm run clean && tsup && npm run format",
     "start": "tsc && npm link",
     "format": "prettier --write \"src/**/*.ts\"",
