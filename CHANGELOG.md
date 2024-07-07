@@ -1,5 +1,12 @@
 
 
+## [0.1.7](https://github.com/irsyadadl/d.cli/compare/v0.1.6...v0.1.7) (2024-07-07)
+
+
+### Bug Fixes
+
+* fix errors ([f35a2e2](https://github.com/irsyadadl/d.cli/commit/f35a2e2e73d82fc439304575565d2a1e6caa6a27))
+
 ## [0.1.6](https://github.com/irsyadadl/d.cli/compare/v0.1.5...v0.1.6) (2024-07-07)
 
 
