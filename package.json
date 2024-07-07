@@ -8,6 +8,7 @@
     "type": "git",
     "url": "https://github.com/irsyadadl/d.cli"
   },
+  "homepage": "https://d.irsyad.co",
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
@@ -50,7 +51,7 @@
       "release": true
     },
     "npm": {
-      "publish": true
+      "publish": false
     },
     "publishConfig": {
       "access": "public",
