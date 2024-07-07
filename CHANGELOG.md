@@ -1,5 +1,12 @@
 
 
+## [0.2.0](https://github.com/irsyadadl/d.cli/compare/v0.1.23...v0.2.0) (2024-07-07)
+
+
+### Features
+
+* add avatar to component list ([0efe39b](https://github.com/irsyadadl/d.cli/commit/0efe39b249fc5b27dc0998a5a69c25954e2a2e56))
+
 ## [0.1.23](https://github.com/irsyadadl/d.cli/compare/v0.1.21...v0.1.23) (2024-07-07)
 
 
