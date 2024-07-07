@@ -4,6 +4,7 @@ import { spawn } from 'child_process'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import fetch from 'node-fetch'
+import chalk from 'chalk'
 
 // Define __filename and __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url)
@@ -30,7 +31,9 @@ export async function init() {
 
   if (!configJsExists && !configTsExists) {
     console.log(
-      'No Tailwind configuration file found. Please ensure tailwind.config.ts or tailwind.config.js exists in the root directory.',
+      chalk.red(
+        'No Tailwind configuration file found. Please ensure tailwind.config.ts or tailwind.config.js exists in the root directory.',
+      ),
     )
     return
   }
@@ -89,7 +92,7 @@ export async function init() {
   console.log(`Checking if CSS source path exists: ${cssSourcePath}`)
   if (!fs.existsSync(path.dirname(cssLocation))) {
     fs.mkdirSync(path.dirname(cssLocation), { recursive: true })
-    console.log(`Created directory for CSS at ${path.dirname(cssLocation)}`)
+    console.log(chalk.gray(`Created directory for CSS at ${chalk.blue(path.dirname(cssLocation))}`))
   }
   if (fs.existsSync(cssSourcePath)) {
     try {
@@ -99,19 +102,19 @@ export async function init() {
       console.log(`CSS file copied to ${cssLocation}`)
     } catch (error) {
       // @ts-ignore
-      console.error(`Failed to write CSS file to ${cssLocation}: ${error.message}`)
+      console.error(chalk.red(`Failed to write CSS file to ${cssLocation}: ${error.message}`))
     }
   } else {
-    console.log(`Source CSS file does not exist at ${cssSourcePath}`)
+    console.log(chalk.yellow(`Source CSS file does not exist at ${cssSourcePath}`))
   }
 
   // Determine the target Tailwind config file based on existing files
   const tailwindConfigTarget = fs.existsSync('tailwind.config.js') ? 'tailwind.config.js' : 'tailwind.config.ts'
-  console.log(`Target Tailwind config file: ${tailwindConfigTarget}`)
+  console.log(chalk.gray(`Target Tailwind config file: ${tailwindConfigTarget}`))
 
   // Check if the config source path exists
   if (!fs.existsSync(configSourcePath)) {
-    console.log(`Source Tailwind config file does not exist at ${configSourcePath}`)
+    console.log(chalk.yellow(`Source Tailwind config file does not exist at ${configSourcePath}`))
     return
   }
 
@@ -121,7 +124,7 @@ export async function init() {
     fs.writeFileSync(tailwindConfigTarget, tailwindConfigContent, { flag: 'w' }) // Overwrite the existing Tailwind config
   } catch (error) {
     // @ts-ignore
-    console.error(`Failed to write Tailwind config to ${tailwindConfigTarget}: ${error.message}`)
+    console.error(chalk.red(`Failed to write Tailwind config to ${tailwindConfigTarget}: ${error.message}`))
   }
 
   // Ask for preferred package manager
@@ -167,12 +170,12 @@ export async function init() {
   const response = await fetch(fileUrl)
   const fileContent = await response.text()
   fs.writeFileSync(path.join(uiFolder, 'primitive.tsx'), fileContent)
-  console.log(`primitive.tsx file copied to ${uiFolder}`)
+  console.log(`${chalk.green('primitive.tsx')} file copied to ${chalk.blue(uiFolder)}`)
 
   // Save configuration to d.json with relative path
   const config = { ui: uiFolder }
   fs.writeFileSync('d.json', JSON.stringify(config, null, 2))
-  console.log('Configuration saved to d.json')
+  console.log(chalk.green('Configuration saved to d.json'))
 
-  console.log('Installation complete.')
+  console.log(chalk.green('Installation complete.'))
 }

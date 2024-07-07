@@ -76,6 +76,7 @@ export const components = [
       { name: 'search-field' },
     ],
   },
+  { name: 'form' },
   { name: 'text-field', children: [{ name: 'field' }] },
   { name: 'radio', children: [{ name: 'field' }] },
   { name: 'checkbox', children: [{ name: 'field' }] },
@@ -137,6 +138,7 @@ export const components = [
       { name: 'list-box' },
       { name: 'popover' },
       { name: 'button' },
+      { name: 'modal' },
     ],
   },
   {
@@ -148,11 +150,12 @@ export const components = [
       { name: 'list-box' },
       { name: 'popover' },
       { name: 'button' },
+      { name: 'modal' },
     ],
   },
   {
     name: 'select',
-    children: [{ name: 'select' }, { name: 'dropdown' }, { name: 'field' }, { name: 'list-box' }, { name: 'popover' }],
+    children: [{ name: 'dropdown' }, { name: 'field' }, { name: 'list-box' }, { name: 'popover' }, { name: 'modal' }],
   },
   {
     name: 'statuses',

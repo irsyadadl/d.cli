@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import chalk from 'chalk'
 
 export function getWriteComponentPath(componentName: string) {
   const uiFolder = getUIFolderPath()
@@ -17,12 +18,11 @@ export function getUIFolderPath() {
 }
 
 export async function writeFile(description: string, url: string, writePath: string) {
-  console.log(description)
   try {
     const response = await fetch(url)
     const content = await response.text()
     fs.writeFileSync(writePath, content)
   } catch (error: any) {
-    console.error(`Error writing component to ${writePath}: ${error.message}`)
+    console.error(chalk.red(`Error writing component to ${writePath}: ${error.message}`))
   }
 }
