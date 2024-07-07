@@ -1,5 +1,12 @@
 
 
+## [0.1.0](https://github.com/irsyadadl/d-cli/compare/v0.0.2...v0.1.0) (2024-07-07)
+
+
+### Features
+
+* work flow publishing to npm ([18b8233](https://github.com/irsyadadl/d-cli/commit/18b823397264ea64e144920b0d286d7b1f816162))
+
 ## 0.0.2 (2024-07-07)
 
 
