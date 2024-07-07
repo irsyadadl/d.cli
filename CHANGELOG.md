@@ -1,5 +1,13 @@
 
 
+## [0.1.23](https://github.com/irsyadadl/d.cli/compare/v0.1.21...v0.1.23) (2024-07-07)
+
+
+### Refactors
+
+* cleaning ([32c5b78](https://github.com/irsyadadl/d.cli/commit/32c5b781bb8653959fba2c58fd4e9474b879202d))
+* small change on add command ([47011fc](https://github.com/irsyadadl/d.cli/commit/47011fcafb879def226cbcdc1fe1b92beceb1703))
+
 ## [0.1.22](https://github.com/irsyadadl/d.cli/compare/v0.1.21...v0.1.22) (2024-07-07)
 
 
