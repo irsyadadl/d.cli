@@ -85,6 +85,10 @@
               "section": "Bug Fixes"
             },
             {
+              "type": "refactor",
+              "section": "Refactors"
+            },
+            {
               "type": "chore",
               "section": "Chores"
             }

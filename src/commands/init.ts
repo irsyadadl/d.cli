@@ -175,7 +175,7 @@ export async function init() {
   // Save configuration to d.json with relative path
   const config = { ui: uiFolder }
   fs.writeFileSync('d.json', JSON.stringify(config, null, 2))
-  console.log(chalk.green('Configuration saved to d.json'))
+  console.log(chalk.green('Configuration saved to d.json ✓'))
 
-  console.log(chalk.green('Installation complete.'))
+  console.log(chalk.green('Installation complete. ✓'))
 }
