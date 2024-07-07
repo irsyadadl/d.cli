@@ -14,7 +14,7 @@
     "prepare": "husky",
     "remove-packages": "npm uninstall @irsyadadl/paranoid clsx cmdk embla-carousel-react framer-motion input-otp react-aria-components sonner tailwind-merge tailwind-variants tailwindcss-animate tailwindcss-react-aria-components",
     "clean": "rimraf src/components && rimraf styles && rimraf resources && rimraf tailwind.config.ts && rimraf tailwind.config.js && rimraf src/components && rimraf components && rimraf dist && npm run remove-packages",
-    "build": "npm run clean && tsup && npm run format",
+    "build": "tsup && npm run format",
     "start": "tsc && npm link",
     "format": "prettier --write \"src/**/*.ts\"",
     "preview": "npm run build && npm link",
@@ -44,8 +44,6 @@
     "prettier": "^3.3.2",
     "release-it": "^17.4.1",
     "rimraf": "^5.0.8",
-    "rollup": "^4.18.0",
-    "rollup-plugin-filesize": "^10.0.0",
     "tsup": "^8.1.0",
     "typescript": "^5.5.3"
   },
@@ -54,11 +52,7 @@
     "@babel/parser": "^7.24.7",
     "@babel/plugin-transform-typescript": "^7.24.7",
     "@inquirer/prompts": "^5.1.2",
-    "commander": "^12.1.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-builtins": "^2.1.2",
-    "rollup-plugin-node-globals": "^1.4.0",
-    "rollup-plugin-node-resolve": "^5.2.0"
+    "commander": "^12.1.0"
   },
   "release-it": {
     "git": {
