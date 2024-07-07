@@ -1,5 +1,12 @@
 
 
+## [0.1.6](https://github.com/irsyadadl/d.cli/compare/v0.1.5...v0.1.6) (2024-07-07)
+
+
+### Bug Fixes
+
+* make the file to be stub ([8d30a16](https://github.com/irsyadadl/d.cli/commit/8d30a16277ec658d1373690ade0f6605f0d4fd7f))
+
 ## [0.1.5](https://github.com/irsyadadl/d.cli/compare/v0.1.4...v0.1.5) (2024-07-07)
 
 
