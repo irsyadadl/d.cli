@@ -42,7 +42,7 @@ export async function init() {
     componentsFolder = 'resources/js/components'
     uiFolder = path.join(componentsFolder, 'ui')
     cssLocation = cssPath.laravel
-    configSourcePath = 'src/resources/tailwind-config/tailwind.config.laravel.stub'
+    configSourcePath = path.join(__dirname, '../resources/tailwind-config/tailwind.config.laravel.stub')
   } else if (projectType === 'Next.js') {
     const hasSrc = await confirm({
       message: 'Does this project have a src directory?',
@@ -51,7 +51,7 @@ export async function init() {
     componentsFolder = hasSrc ? 'src/components' : 'components'
     uiFolder = path.join(componentsFolder, 'ui')
     cssLocation = hasSrc ? cssPath.nextHasSrc : cssPath.nextNoSrc
-    configSourcePath = 'src/resources/tailwind-config/tailwind.config.next.stub'
+    configSourcePath = path.join(__dirname, '../resources/tailwind-config/tailwind.config.next.stub')
   } else {
     componentsFolder = await input({
       message: 'Enter the path to your components folder:',
@@ -60,12 +60,13 @@ export async function init() {
     uiFolder = path.join(componentsFolder, 'ui')
     cssLocation = await input({
       message: 'Where would you like to place the CSS file?',
-      default: 'styles/app.css',
+      default: cssPath.other,
     })
-    configSourcePath = 'src/resources/tailwind-config/tailwind.config.next.stub'
+    configSourcePath = path.join(__dirname, '../resources/tailwind-config/tailwind.config.next.stub')
   }
 
   console.log(`Determined CSS location: ${cssLocation}`)
+  console.log(`Using Tailwind config source path: ${configSourcePath}`)
 
   // Ensure the components and UI folders exist
   if (!fs.existsSync(uiFolder)) {
@@ -76,7 +77,7 @@ export async function init() {
   }
 
   // Handle CSS file placement (always overwrite)
-  const cssSourcePath = 'src/resources/tailwind-css/app.css'
+  const cssSourcePath = path.join(__dirname, '../resources/tailwind-css/app.css')
   console.log(`Checking if CSS source path exists: ${cssSourcePath}`)
   if (!fs.existsSync(path.dirname(cssLocation))) {
     fs.mkdirSync(path.dirname(cssLocation), { recursive: true })
@@ -101,14 +102,18 @@ export async function init() {
   console.log(`Target Tailwind config file: ${tailwindConfigTarget}`)
 
   // Copy Tailwind configuration content (always overwrite)
-  try {
-    const tailwindConfigContent = fs.readFileSync(configSourcePath, 'utf8')
-    console.log(`Read Tailwind config content from ${configSourcePath}`)
-    fs.writeFileSync(tailwindConfigTarget, tailwindConfigContent, { flag: 'w' }) // Overwrite the existing Tailwind config
-    console.log(`Tailwind configuration copied to ${tailwindConfigTarget}`)
-  } catch (error) {
-    // @ts-ignore
-    console.error(`Failed to write Tailwind config to ${tailwindConfigTarget}: ${error.message}`)
+  if (fs.existsSync(configSourcePath)) {
+    try {
+      const tailwindConfigContent = fs.readFileSync(configSourcePath, 'utf8')
+      console.log(`Read Tailwind config content from ${configSourcePath}`)
+      fs.writeFileSync(tailwindConfigTarget, tailwindConfigContent, { flag: 'w' }) // Overwrite the existing Tailwind config
+      console.log(`Tailwind configuration copied to ${tailwindConfigTarget}`)
+    } catch (error) {
+      // @ts-ignore
+      console.error(`Failed to write Tailwind config to ${tailwindConfigTarget}: ${error.message}`)
+    }
+  } else {
+    console.log(`Source Tailwind config file does not exist at ${configSourcePath}`)
   }
 
   // Ask for preferred package manager
