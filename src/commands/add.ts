@@ -32,7 +32,7 @@ async function createComponent(componentName: string) {
 export async function add(options: any) {
   const configFilePath = path.join(process.cwd(), 'd.json')
 
-  console.log(chalk.blue('Checking for d.json file...'))
+  console.log(`Checking for ${chalk.blue('d.json')} file...`)
 
   if (!fs.existsSync(configFilePath)) {
     console.log(
@@ -41,7 +41,7 @@ export async function add(options: any) {
     return
   }
 
-  console.log(chalk.blue('d.json file found ✓, proceeding...'))
+  console.log(`${chalk.blue('d.json')} file found, proceeding...`)
 
   const onlyChildren = [
     'buttons',
