@@ -29,6 +29,7 @@ export const components = [
   },
   { name: 'menu', children: [{ name: 'dropdown' }] },
   { name: 'list-box', children: [{ name: 'dropdown' }] },
+  { name: 'avatar' },
   { name: 'tabs' },
   { name: 'tag-group', children: [{ name: 'field' }, { name: 'badge' }] },
   { name: 'table', children: [{ name: 'checkbox' }] },
