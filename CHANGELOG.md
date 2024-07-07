@@ -1,5 +1,12 @@
 
 
+## [0.1.22](https://github.com/irsyadadl/d.cli/compare/v0.1.21...v0.1.22) (2024-07-07)
+
+
+### Refactors
+
+* small change on add command ([47011fc](https://github.com/irsyadadl/d.cli/commit/47011fcafb879def226cbcdc1fe1b92beceb1703))
+
 ## [0.1.21](https://github.com/irsyadadl/d.cli/compare/v0.1.20...v0.1.21) (2024-07-07)
 
 
