@@ -1,7 +1,7 @@
 {
   "name": "@irsyadadl/d",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A CLI for D",
   "main": "index.js",
   "repository": {
@@ -21,7 +21,9 @@
     "@irsyadadl/d": "./dist/index.js"
   },
   "keywords": [
-    "cli", "D.", "design-system"
+    "cli",
+    "D.",
+    "design-system"
   ],
   "author": "Irsyad A. Panjaitan",
   "license": "MIT",
@@ -56,7 +58,7 @@
     "publishConfig": {
       "access": "public",
       "registry": "https://npm.pkg.github.com"
-  },
+    },
     "plugins": {
       "@release-it/conventional-changelog": {
         "infile": "CHANGELOG.md",
