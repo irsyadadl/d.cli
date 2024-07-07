@@ -18,7 +18,7 @@
     "start": "tsc && npm link",
     "format": "prettier --write \"src/**/*.ts\"",
     "preview": "npm run build && npm link",
-    "pr": "npm run clean &&npm run build && git commit -a",
+    "pr": "npm run clean && npm run build && git commit -a",
     "release": "release-it"
   },
   "bin": {
