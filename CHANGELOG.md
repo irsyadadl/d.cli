@@ -1,5 +1,12 @@
 
 
+## [0.1.18](https://github.com/irsyadadl/d.cli/compare/v0.1.17...v0.1.18) (2024-07-07)
+
+
+### Bug Fixes
+
+* hope this final commit, but we dk yet ([84aa5a5](https://github.com/irsyadadl/d.cli/commit/84aa5a580ed39805d410d8013bf4e5095f075f09))
+
 ## [0.1.17](https://github.com/irsyadadl/d.cli/compare/v0.1.16...v0.1.17) (2024-07-07)
 
 
