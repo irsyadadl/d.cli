@@ -152,13 +152,7 @@ export const components = [
   },
   {
     name: 'select',
-    children: [
-      { name: 'select' },
-      { name: 'dropdown' },
-      { name: 'field' },
-      { name: 'list-box' },
-      { name: 'popover' },
-    ],
+    children: [{ name: 'select' }, { name: 'dropdown' }, { name: 'field' }, { name: 'list-box' }, { name: 'popover' }],
   },
   {
     name: 'statuses',
