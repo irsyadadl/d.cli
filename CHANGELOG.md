@@ -1,5 +1,12 @@
 
 
+## [0.1.17](https://github.com/irsyadadl/d.cli/compare/v0.1.16...v0.1.17) (2024-07-07)
+
+
+### Bug Fixes
+
+* fast and fate ([c1acb09](https://github.com/irsyadadl/d.cli/commit/c1acb09a9ce70b7b443a953245a7d66ddb00e136))
+
 ## [0.1.16](https://github.com/irsyadadl/d.cli/compare/v0.1.15...v0.1.16) (2024-07-07)
 
 
