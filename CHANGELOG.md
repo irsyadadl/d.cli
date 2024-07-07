@@ -1,5 +1,12 @@
 
 
+## [0.1.21](https://github.com/irsyadadl/d.cli/compare/v0.1.20...v0.1.21) (2024-07-07)
+
+
+### Bug Fixes
+
+* fix error on tailwind configuration ([c7ec5cd](https://github.com/irsyadadl/d.cli/commit/c7ec5cd351c6ed17d00df926ca28d91ec28a2e38))
+
 ## [0.1.20](https://github.com/irsyadadl/d.cli/compare/v0.1.19...v0.1.20) (2024-07-07)
 
 
