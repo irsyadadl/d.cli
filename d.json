@@ -1,3 +1,3 @@
 {
-  "ui": "resources/js/components/ui"
+  "ui": "src/components/ui"
 }

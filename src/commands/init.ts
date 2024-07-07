@@ -5,6 +5,13 @@ import path from 'path'
 import fetch from 'node-fetch'
 
 export async function init() {
+  const cssPath = {
+    laravel: 'resources/css/app.css',
+    nextHasSrc: 'src/app/globals.css',
+    nextNoSrc: 'app/globals.css',
+    other: 'styles/app.css',
+  }
+
   console.log('Initializing...')
 
   // Check if either tailwind.config.ts or tailwind.config.js exists
@@ -34,7 +41,7 @@ export async function init() {
   if (projectType === 'Laravel') {
     componentsFolder = 'resources/js/components'
     uiFolder = path.join(componentsFolder, 'ui')
-    cssLocation = 'resources/css/app.css'
+    cssLocation = cssPath.laravel
     configSourcePath = 'src/resources/tailwind-config/tailwind.config.laravel.stub'
   } else if (projectType === 'Next.js') {
     const hasSrc = await confirm({
@@ -43,7 +50,7 @@ export async function init() {
     })
     componentsFolder = hasSrc ? 'src/components' : 'components'
     uiFolder = path.join(componentsFolder, 'ui')
-    cssLocation = hasSrc ? 'src/styles/app.css' : 'styles/app.css'
+    cssLocation = hasSrc ? cssPath.nextHasSrc : cssPath.nextNoSrc
     configSourcePath = 'src/resources/tailwind-config/tailwind.config.next.stub'
   } else {
     componentsFolder = await input({
@@ -68,7 +75,7 @@ export async function init() {
     console.log(`UI folder already exists at ${uiFolder}`)
   }
 
-  // Handle CSS file placement (ask if it should be overwritten)
+  // Handle CSS file placement (always overwrite)
   const cssSourcePath = 'src/resources/tailwind-css/app.css'
   console.log(`Checking if CSS source path exists: ${cssSourcePath}`)
   if (!fs.existsSync(path.dirname(cssLocation))) {
@@ -76,24 +83,14 @@ export async function init() {
     console.log(`Created directory for CSS at ${path.dirname(cssLocation)}`)
   }
   if (fs.existsSync(cssSourcePath)) {
-    const shouldReplaceCss = fs.existsSync(cssLocation)
-      ? await confirm({
-          message: `CSS file already exists at ${cssLocation}. Do you want to replace it?`,
-          default: false,
-        })
-      : true
-    if (shouldReplaceCss) {
-      try {
-        const cssContent = fs.readFileSync(cssSourcePath, 'utf8')
-        console.log(`Read CSS content from ${cssSourcePath}`)
-        fs.writeFileSync(cssLocation, cssContent, { flag: 'w' }) // Overwrite the existing CSS file
-        console.log(`CSS file copied to ${cssLocation}`)
-      } catch (error) {
-        // @ts-ignore
-        console.error(`Failed to write CSS file to ${cssLocation}: ${error.message}`)
-      }
-    } else {
-      console.log(`CSS file at ${cssLocation} was not replaced.`)
+    try {
+      const cssContent = fs.readFileSync(cssSourcePath, 'utf8')
+      console.log(`Read CSS content from ${cssSourcePath}`)
+      fs.writeFileSync(cssLocation, cssContent, { flag: 'w' }) // Overwrite the existing CSS file
+      console.log(`CSS file copied to ${cssLocation}`)
+    } catch (error) {
+      // @ts-ignore
+      console.error(`Failed to write CSS file to ${cssLocation}: ${error.message}`)
     }
   } else {
     console.log(`Source CSS file does not exist at ${cssSourcePath}`)
@@ -103,36 +100,15 @@ export async function init() {
   const tailwindConfigTarget = fs.existsSync('tailwind.config.js') ? 'tailwind.config.js' : 'tailwind.config.ts'
   console.log(`Target Tailwind config file: ${tailwindConfigTarget}`)
 
-  // Copy Tailwind configuration content (ask if it should be overwritten)
-  if (fs.existsSync(tailwindConfigTarget)) {
-    const shouldReplaceConfig = await confirm({
-      message: `Tailwind config file already exists at ${tailwindConfigTarget}. Do you want to replace it?`,
-      default: false,
-    })
-    if (shouldReplaceConfig) {
-      try {
-        const tailwindConfigContent = fs.readFileSync(configSourcePath, 'utf8')
-        console.log(`Read Tailwind config content from ${configSourcePath}`)
-        fs.writeFileSync(tailwindConfigTarget, tailwindConfigContent, { flag: 'w' }) // Overwrite the existing Tailwind config
-        console.log(`Tailwind configuration copied to ${tailwindConfigTarget}`)
-      } catch (error) {
-        // @ts-ignore
-        console.error(`Failed to write Tailwind config to ${tailwindConfigTarget}: ${error.message}`)
-      }
-    } else {
-      console.log(`Tailwind config file at ${tailwindConfigTarget} was not replaced.`)
-    }
-  } else {
-    console.log(`Tailwind config file does not exist at ${tailwindConfigTarget}. Creating a new one.`)
-    try {
-      const tailwindConfigContent = fs.readFileSync(configSourcePath, 'utf8')
-      console.log(`Read Tailwind config content from ${configSourcePath}`)
-      fs.writeFileSync(tailwindConfigTarget, tailwindConfigContent, { flag: 'w' })
-      console.log(`Tailwind configuration copied to ${tailwindConfigTarget}`)
-    } catch (error) {
-      // @ts-ignore
-      console.error(`Failed to write Tailwind config to ${tailwindConfigTarget}: ${error.message}`)
-    }
+  // Copy Tailwind configuration content (always overwrite)
+  try {
+    const tailwindConfigContent = fs.readFileSync(configSourcePath, 'utf8')
+    console.log(`Read Tailwind config content from ${configSourcePath}`)
+    fs.writeFileSync(tailwindConfigTarget, tailwindConfigContent, { flag: 'w' }) // Overwrite the existing Tailwind config
+    console.log(`Tailwind configuration copied to ${tailwindConfigTarget}`)
+  } catch (error) {
+    // @ts-ignore
+    console.error(`Failed to write Tailwind config to ${tailwindConfigTarget}: ${error.message}`)
   }
 
   // Ask for preferred package manager
