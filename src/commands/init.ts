@@ -10,6 +10,8 @@ export async function init() {
   // Check if either tailwind.config.ts or tailwind.config.js exists
   const configJsExists = fs.existsSync('tailwind.config.js')
   const configTsExists = fs.existsSync('tailwind.config.ts')
+  console.log(`tailwind.config.js exists: ${configJsExists}`)
+  console.log(`tailwind.config.ts exists: ${configTsExists}`)
 
   if (!configJsExists && !configTsExists) {
     console.log(
@@ -56,13 +58,17 @@ export async function init() {
     configSourcePath = 'src/resources/tailwind-config/tailwind.config.next.stub'
   }
 
+  console.log(`Determined CSS location: ${cssLocation}`)
+
   // Ensure the components and UI folders exist
   if (!fs.existsSync(uiFolder)) {
     fs.mkdirSync(uiFolder, { recursive: true })
     console.log(`Created UI folder at ${uiFolder}`)
+  } else {
+    console.log(`UI folder already exists at ${uiFolder}`)
   }
 
-  // Handle CSS file placement (overwrite if it exists)
+  // Handle CSS file placement (ask if it should be overwritten)
   const cssSourcePath = 'src/resources/tailwind-css/app.css'
   console.log(`Checking if CSS source path exists: ${cssSourcePath}`)
   if (!fs.existsSync(path.dirname(cssLocation))) {
@@ -70,13 +76,24 @@ export async function init() {
     console.log(`Created directory for CSS at ${path.dirname(cssLocation)}`)
   }
   if (fs.existsSync(cssSourcePath)) {
-    try {
-      const cssContent = fs.readFileSync(cssSourcePath, 'utf8')
-      console.log(`Writing CSS content to: ${cssLocation}`)
-      fs.writeFileSync(cssLocation, cssContent, { flag: 'w' }) // Overwrite the existing CSS file
-      console.log(`CSS file copied to ${cssLocation}`)
-    } catch (error) {
-      console.error(`Failed to write CSS file to ${cssLocation}: ${error.message}`)
+    const shouldReplaceCss = fs.existsSync(cssLocation)
+      ? await confirm({
+          message: `CSS file already exists at ${cssLocation}. Do you want to replace it?`,
+          default: false,
+        })
+      : true
+    if (shouldReplaceCss) {
+      try {
+        const cssContent = fs.readFileSync(cssSourcePath, 'utf8')
+        console.log(`Read CSS content from ${cssSourcePath}`)
+        fs.writeFileSync(cssLocation, cssContent, { flag: 'w' }) // Overwrite the existing CSS file
+        console.log(`CSS file copied to ${cssLocation}`)
+      } catch (error) {
+        // @ts-ignore
+        console.error(`Failed to write CSS file to ${cssLocation}: ${error.message}`)
+      }
+    } else {
+      console.log(`CSS file at ${cssLocation} was not replaced.`)
     }
   } else {
     console.log(`Source CSS file does not exist at ${cssSourcePath}`)
@@ -84,17 +101,29 @@ export async function init() {
 
   // Determine the target Tailwind config file based on existing files
   const tailwindConfigTarget = fs.existsSync('tailwind.config.js') ? 'tailwind.config.js' : 'tailwind.config.ts'
+  console.log(`Target Tailwind config file: ${tailwindConfigTarget}`)
 
-  // Copy Tailwind configuration content (overwrite if it exists)
+  // Copy Tailwind configuration content (ask if it should be overwritten)
   console.log(`Checking if Tailwind config source path exists: ${configSourcePath}`)
   if (fs.existsSync(configSourcePath)) {
-    try {
-      const tailwindConfigContent = fs.readFileSync(configSourcePath, 'utf8')
-      console.log(`Writing Tailwind config content to: ${tailwindConfigTarget}`)
-      fs.writeFileSync(tailwindConfigTarget, tailwindConfigContent, { flag: 'w' }) // Overwrite the existing Tailwind config
-      console.log(`Tailwind configuration copied to ${tailwindConfigTarget}`)
-    } catch (error) {
-      console.error(`Failed to write Tailwind config to ${tailwindConfigTarget}: ${error.message}`)
+    const shouldReplaceConfig = fs.existsSync(tailwindConfigTarget)
+      ? await confirm({
+          message: `Tailwind config file already exists at ${tailwindConfigTarget}. Do you want to replace it?`,
+          default: false,
+        })
+      : true
+    if (shouldReplaceConfig) {
+      try {
+        const tailwindConfigContent = fs.readFileSync(configSourcePath, 'utf8')
+        console.log(`Read Tailwind config content from ${configSourcePath}`)
+        fs.writeFileSync(tailwindConfigTarget, tailwindConfigContent, { flag: 'w' }) // Overwrite the existing Tailwind config
+        console.log(`Tailwind configuration copied to ${tailwindConfigTarget}`)
+      } catch (error) {
+        // @ts-ignore
+        console.error(`Failed to write Tailwind config to ${tailwindConfigTarget}: ${error.message}`)
+      }
+    } else {
+      console.log(`Tailwind config file at ${tailwindConfigTarget} was not replaced.`)
     }
   } else {
     console.log(`Tailwind configuration file does not exist at ${configSourcePath}`)

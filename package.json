@@ -1,7 +1,7 @@
 {
   "name": "@irsyadadl/d",
   "type": "module",
-  "version": "0.1.12",
+  "version": "0.1.11",
   "description": "A CLI for D",
   "main": "index.js",
   "repository": {
@@ -11,13 +11,14 @@
   "homepage": "https://d.irsyad.co",
   "scripts": {
     "dev": "tsup --watch",
-    "remove-packages": "bun remove @irsyadadl/paranoid clsx cmdk embla-carousel-react framer-motion input-otp react-aria-components sonner tailwind-merge tailwind-variants tailwindcss-animate tailwindcss-react-aria-components",
+    "prepare": "husky",
+    "remove-packages": "npm uninstall @irsyadadl/paranoid clsx cmdk embla-carousel-react framer-motion input-otp react-aria-components sonner tailwind-merge tailwind-variants tailwindcss-animate tailwindcss-react-aria-components",
     "clean": "rimraf src/components && rimraf styles && rimraf resources && rimraf tailwind.config.ts && rimraf tailwind.config.js && rimraf src/components && rimraf components && rimraf dist && npm run remove-packages",
     "build": "npm run clean && tsup && npm run format",
     "start": "tsc && npm link",
     "format": "prettier --write \"src/**/*.ts\"",
-    "prepare": "husky",
     "preview": "npm run build && npm link",
+    "pr": "npm run build && git commit -a",
     "release": "release-it"
   },
   "bin": {
