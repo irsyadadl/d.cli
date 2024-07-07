@@ -1,5 +1,12 @@
 
 
+## [0.1.1](https://github.com/irsyadadl/d-cli/compare/v0.1.0...v0.1.1) (2024-07-07)
+
+
+### Bug Fixes
+
+* fix token ([9919923](https://github.com/irsyadadl/d-cli/commit/9919923067c289129918d3a1d77beee7d1127876))
+
 ## [0.1.0](https://github.com/irsyadadl/d-cli/compare/v0.0.2...v0.1.0) (2024-07-07)
 
 
