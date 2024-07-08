@@ -1,5 +1,12 @@
 
 
+## [0.5.1](https://github.com/irsyadadl/d.cli/compare/v0.5.0...v0.5.1) (2024-07-08)
+
+
+### Bug Fixes
+
+* add also @irsyadadl/d to cli ([ec8fd73](https://github.com/irsyadadl/d.cli/commit/ec8fd732c02cc675800410c1567ec0e8fe899be1))
+
 ## [0.5.0](https://github.com/irsyadadl/d.cli/compare/v0.4.0...v0.5.0) (2024-07-08)
 
 
