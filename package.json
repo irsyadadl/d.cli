@@ -5,7 +5,8 @@
   "description": "A CLI for D",
   "main": "dist/index.js",
   "bin": {
-    "d": "./dist/index.js"
+    "d": "./dist/index.js",
+    "@irsyadadl/d": "./dist/index.js"
   },
   "repository": {
     "type": "git",
