@@ -1,5 +1,12 @@
 
 
+## [0.3.0](https://github.com/irsyadadl/d.cli/compare/v0.2.0...v0.3.0) (2024-07-08)
+
+
+### Features
+
+* add media,avatar,toaster,input-otp ([228bd24](https://github.com/irsyadadl/d.cli/commit/228bd247fe01277bcced20213de51bb04e780067))
+
 ## [0.2.0](https://github.com/irsyadadl/d.cli/compare/v0.1.23...v0.2.0) (2024-07-07)
 
 
