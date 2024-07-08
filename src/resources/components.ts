@@ -29,6 +29,7 @@ export const components = [
   },
   { name: 'menu', children: [{ name: 'dropdown' }] },
   { name: 'list-box', children: [{ name: 'dropdown' }] },
+  { name: 'media', children: [{ name: 'avatar' }] },
   { name: 'avatar' },
   { name: 'tabs' },
   { name: 'tag-group', children: [{ name: 'field' }, { name: 'badge' }] },
@@ -75,6 +76,7 @@ export const components = [
       { name: 'switch' },
       { name: 'number-field' },
       { name: 'search-field' },
+      { name: 'input-otp' },
     ],
   },
   { name: 'form' },
@@ -160,11 +162,19 @@ export const components = [
   },
   {
     name: 'statuses',
-    children: [{ name: 'badge' }, { name: 'progress-bar' }, { name: 'meter' }, { name: 'note' }, { name: 'field' }],
+    children: [
+      { name: 'badge' },
+      { name: 'progress-bar' },
+      { name: 'meter' },
+      { name: 'note' },
+      { name: 'field' },
+      { name: 'toaster' },
+    ],
   },
 
   { name: 'badge' },
   { name: 'progress-bar', children: [{ name: 'field' }] },
   { name: 'meter', children: [{ name: 'field' }] },
   { name: 'note' },
+  { name: 'toaster' },
 ]
