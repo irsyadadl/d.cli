@@ -1,5 +1,12 @@
 
 
+## [0.5.3](https://github.com/irsyadadl/d.cli/compare/v0.5.2...v0.5.3) (2024-07-08)
+
+
+### Refactors
+
+* change pkg desc ([da4ec6f](https://github.com/irsyadadl/d.cli/commit/da4ec6fc44a72c7ada9df2beafeeeb4f70099d70))
+
 ## [0.5.2](https://github.com/irsyadadl/d.cli/compare/v0.5.1...v0.5.2) (2024-07-08)
 
 
