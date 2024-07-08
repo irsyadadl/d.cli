@@ -4,6 +4,9 @@
   "version": "0.4.0",
   "description": "A CLI for D",
   "main": "dist/index.js",
+  "bin": {
+    "d": "./dist/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/irsyadadl/d.cli"
@@ -20,9 +23,6 @@
     "preview": "npm run build && npm link",
     "pr": "npm run clean && npm run build && git commit -a",
     "release": "release-it"
-  },
-  "bin": {
-    "@irsyadadl/d": "./dist/index.js"
   },
   "keywords": [
     "cli",
