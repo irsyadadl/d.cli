@@ -1,5 +1,12 @@
 
 
+## [0.5.2](https://github.com/irsyadadl/d.cli/compare/v0.5.1...v0.5.2) (2024-07-08)
+
+
+### Bug Fixes
+
+* remove `d` | useless when user never run actually name package ([eb85bb4](https://github.com/irsyadadl/d.cli/commit/eb85bb402261208f738198fcc8c7d833d0ce7a43))
+
 ## [0.5.1](https://github.com/irsyadadl/d.cli/compare/v0.5.0...v0.5.1) (2024-07-08)
 
 
