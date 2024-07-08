@@ -177,4 +177,6 @@ export const components = [
   { name: 'meter', children: [{ name: 'field' }] },
   { name: 'note' },
   { name: 'toaster' },
+  { name: 'surfaces', children: [{ name: 'card' }] },
+  { name: 'card' },
 ]
