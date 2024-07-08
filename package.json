@@ -2,7 +2,7 @@
   "name": "@irsyadadl/d",
   "type": "module",
   "version": "0.5.2",
-  "description": "A CLI for D",
+  "description": "This is a command line tool for D.",
   "main": "dist/index.js",
   "bin": {
     "@irsyadadl/d": "./dist/index.js"
