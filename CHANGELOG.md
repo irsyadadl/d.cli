@@ -1,5 +1,12 @@
 
 
+## [0.4.0](https://github.com/irsyadadl/d.cli/compare/v0.3.0...v0.4.0) (2024-07-08)
+
+
+### Features
+
+* add card component ([85303cb](https://github.com/irsyadadl/d.cli/commit/85303cbcfe04f0a32ddf2e1a985f85606490850f))
+
 ## [0.3.0](https://github.com/irsyadadl/d.cli/compare/v0.2.0...v0.3.0) (2024-07-08)
 
 

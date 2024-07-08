@@ -1,7 +1,7 @@
 {
   "name": "@irsyadadl/d",
   "type": "module",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A CLI for D",
   "main": "dist/index.js",
   "repository": {
