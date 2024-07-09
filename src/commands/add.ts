@@ -5,6 +5,7 @@ import { getWriteComponentPath, writeFile } from '../utils'
 import chalk from 'chalk'
 import { getPackageManager } from '../utils/get-package-manager'
 import { additionalDeps } from '../utils/additional-deps'
+import ora from 'ora'
 
 async function createComponent(componentName: string) {
   const writePath = getWriteComponentPath(componentName)
@@ -15,19 +16,20 @@ async function createComponent(componentName: string) {
     fs.mkdirSync(dir, { recursive: true })
   }
 
+  const spinner = ora(`Creating ${componentName}...`).start()
+
   // Check if the file already exists
   if (fs.existsSync(writePath)) {
-    console.log(chalk.gray(`- Skipping ${componentName}, as it already exists.`))
+    spinner.info(`Skipping ${componentName}, as it already exists.`)
     return
   }
-
   const url = `https://raw.githubusercontent.com/irsyadadl/d.irsyad.co/master/components/ui/${componentName}.tsx`
   try {
     await writeFile(`${componentName} created`, url, writePath)
-    console.log(`- ${chalk.green(`${componentName} created  ✓`)}`)
+    spinner.succeed(`${componentName} created`)
   } catch (error) {
     // @ts-ignore
-    console.error(chalk.red(`Error writing component to ${writePath}: ${error.message}`))
+    spinner.fail(`Error writing component to ${writePath}: ${error.message}`)
   }
 }
 
@@ -35,7 +37,7 @@ export async function add(options: any) {
   const configFilePath = path.join(process.cwd(), 'd.json')
 
   if (!fs.existsSync(configFilePath)) {
-    console.log(
+    console.error(
       `${chalk.red('d.json not found')}. ${chalk.gray(`Please run ${chalk.blue('`npx @irsyadadl/d@latest init`')} to initialize the project.`)}`,
     )
     return
@@ -61,6 +63,7 @@ export async function add(options: any) {
       if (onlyChildren.includes(options.component)) {
         if (component.children) {
           for (const child of component.children) {
+            await additionalDeps(child.name, packageManager, action)
             await createComponent(child.name)
           }
         }
@@ -76,5 +79,6 @@ export async function add(options: any) {
       return
     }
   }
+
   console.log(chalk.yellow('No component found'))
 }

@@ -24,18 +24,13 @@ export async function init() {
     other: 'styles/app.css',
   }
 
-  console.log('Initializing...')
   // Check if either tailwind.config.ts or tailwind.config.js exists
   const configJsExists = fs.existsSync('tailwind.config.js')
   const configTsExists = fs.existsSync('tailwind.config.ts')
-  console.log(`tailwind.config.js exists: ${configJsExists}`)
-  console.log(`tailwind.config.ts exists: ${configTsExists}`)
 
   if (!configJsExists && !configTsExists) {
-    console.log(
-      chalk.red(
-        'No Tailwind configuration file found. Please ensure tailwind.config.ts or tailwind.config.js exists in the root directory.',
-      ),
+    console.error(
+      'No Tailwind configuration file found. Please ensure tailwind.config.ts or tailwind.config.js exists in the root directory.',
     )
     return
   }
@@ -49,7 +44,7 @@ export async function init() {
       { name: 'Other', value: 'Other' },
     ],
   })
-
+  const spinner = ora(`Initializing D...`).start()
   let componentsFolder, uiFolder, cssLocation, configSourcePath
 
   if (projectType === 'Laravel') {
@@ -84,41 +79,35 @@ export async function init() {
     configSourcePath = path.join(resourceDir, 'tailwind-config/tailwind.config.next.stub')
   }
 
-  console.log(`Determined CSS location: ${cssLocation}`)
-  console.log(`Using Tailwind config source path: ${configSourcePath}`)
-
   // Ensure the components and UI folders exist
   if (!fs.existsSync(uiFolder)) {
     fs.mkdirSync(uiFolder, { recursive: true })
-    console.log(`Created UI folder at ${uiFolder}`)
+    spinner.succeed(`Created UI folder at ${uiFolder}`)
   } else {
-    console.log(`UI folder already exists at ${uiFolder}`)
+    spinner.succeed(`UI folder already exists at ${uiFolder}`)
   }
 
   // Handle CSS file placement (always overwrite)
   const cssSourcePath = path.join(resourceDir, 'tailwind-css/app.css')
-  console.log(`Checking if CSS source path exists: ${cssSourcePath}`)
   if (!fs.existsSync(path.dirname(cssLocation))) {
     fs.mkdirSync(path.dirname(cssLocation), { recursive: true })
-    console.log(chalk.gray(`Created directory for CSS at ${chalk.blue(path.dirname(cssLocation))}`))
+    spinner.succeed(`Created directory for CSS at ${chalk.blue(path.dirname(cssLocation))}`)
   }
   if (fs.existsSync(cssSourcePath)) {
     try {
       const cssContent = fs.readFileSync(cssSourcePath, 'utf8')
-      console.log(`Read CSS content from ${cssSourcePath}`)
       fs.writeFileSync(cssLocation, cssContent, { flag: 'w' })
-      console.log(`CSS file copied to ${cssLocation}`)
+      spinner.succeed(`CSS file copied to ${cssLocation}`)
     } catch (error) {
       // @ts-ignore
-      console.error(chalk.red(`Failed to write CSS file to ${cssLocation}: ${error.message}`))
+      spinner.fail(`Failed to write CSS file to ${cssLocation}: ${error.message}`)
     }
   } else {
-    console.log(chalk.yellow(`Source CSS file does not exist at ${cssSourcePath}`))
+    spinner.warn(`Source CSS file does not exist at ${cssSourcePath}`)
   }
 
   // Determine the target Tailwind config file based on existing files
   const tailwindConfigTarget = fs.existsSync('tailwind.config.js') ? 'tailwind.config.js' : 'tailwind.config.ts'
-  console.log(chalk.gray(`Target Tailwind config file: ${tailwindConfigTarget}`))
 
   // Check if the config source path exists
   if (!fs.existsSync(configSourcePath)) {
@@ -132,11 +121,9 @@ export async function init() {
     fs.writeFileSync(tailwindConfigTarget, tailwindConfigContent, { flag: 'w' }) // Overwrite the existing Tailwind config
   } catch (error) {
     // @ts-ignore
-    console.error(chalk.red(`Failed to write Tailwind config to ${tailwindConfigTarget}: ${error.message}`))
+    spinner.fail(`Failed to write Tailwind config to ${tailwindConfigTarget}: ${error.message}`)
   }
 
-  // Ask for preferred package manager
-  const spinner = ora(`Initializing D...`).start()
   const packageManager = await getPackageManager()
   const packages = [
     'react-aria-components',
@@ -158,6 +145,19 @@ export async function init() {
     shell: true,
   })
 
+  const fileUrl = 'https://raw.githubusercontent.com/irsyadadl/d.irsyad.co/master/components/ui/primitive.tsx'
+  const response = await fetch(fileUrl)
+  const fileContent = await response.text()
+  fs.writeFileSync(path.join(uiFolder, 'primitive.tsx'), fileContent)
+  spinner.succeed(`primitive.tsx file copied to ${uiFolder}`)
+
+  // Save configuration to d.json with relative path
+  const config = { ui: uiFolder }
+  fs.writeFileSync('d.json', JSON.stringify(config, null, 2))
+  spinner.succeed('Configuration saved to d.json')
+
+  spinner.succeed('Installation complete. ')
+
   // Wait for the installation to complete before proceeding
   await new Promise<void>((resolve) => {
     child.on('close', () => {
@@ -165,17 +165,4 @@ export async function init() {
       resolve()
     })
   })
-
-  const fileUrl = 'https://raw.githubusercontent.com/irsyadadl/d.irsyad.co/master/components/ui/primitive.tsx'
-  const response = await fetch(fileUrl)
-  const fileContent = await response.text()
-  fs.writeFileSync(path.join(uiFolder, 'primitive.tsx'), fileContent)
-  console.log(`${chalk.green('primitive.tsx')} file copied to ${chalk.blue(uiFolder)}`)
-
-  // Save configuration to d.json with relative path
-  const config = { ui: uiFolder }
-  fs.writeFileSync('d.json', JSON.stringify(config, null, 2))
-  console.log(chalk.green('Configuration saved to d.json ✓'))
-
-  console.log(chalk.green('Installation complete. ✓'))
 }
