@@ -1,5 +1,12 @@
 
 
+## [0.7.0](https://github.com/irsyadadl/d.cli/compare/v0.6.0...v0.7.0) (2024-07-09)
+
+
+### Features
+
+* make this cli better and better ([0754344](https://github.com/irsyadadl/d.cli/commit/07543447ecfdd03523c82f21804efee5d25e1dad))
+
 ## [0.6.0](https://github.com/irsyadadl/d.cli/compare/v0.5.3...v0.6.0) (2024-07-09)
 
 
