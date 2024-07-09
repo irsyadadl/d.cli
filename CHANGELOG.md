@@ -1,5 +1,12 @@
 
 
+## [0.6.0](https://github.com/irsyadadl/d.cli/compare/v0.5.3...v0.6.0) (2024-07-09)
+
+
+### Features
+
+* cli will install the deps need ([2985976](https://github.com/irsyadadl/d.cli/commit/2985976b63a50bf78938442a703ca1eba217e1ff))
+
 ## [0.5.3](https://github.com/irsyadadl/d.cli/compare/v0.5.2...v0.5.3) (2024-07-08)
 
 
