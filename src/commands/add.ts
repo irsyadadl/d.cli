@@ -3,6 +3,8 @@ import path from 'path'
 import { components } from '../resources/components'
 import { getWriteComponentPath, writeFile } from '../utils'
 import chalk from 'chalk'
+import { getPackageManager } from '../utils/get-package-manager'
+import { additionalDeps } from '../utils/additional-deps'
 
 async function createComponent(componentName: string) {
   const writePath = getWriteComponentPath(componentName)
@@ -32,16 +34,12 @@ async function createComponent(componentName: string) {
 export async function add(options: any) {
   const configFilePath = path.join(process.cwd(), 'd.json')
 
-  console.log(`Checking for ${chalk.blue('d.json')} file...`)
-
   if (!fs.existsSync(configFilePath)) {
     console.log(
       `${chalk.red('d.json not found')}. ${chalk.gray(`Please run ${chalk.blue('`npx @irsyadadl/d@latest init`')} to initialize the project.`)}`,
     )
     return
   }
-
-  console.log(`${chalk.blue('d.json')} file found, proceeding...`)
 
   const onlyChildren = [
     'buttons',
@@ -55,17 +53,19 @@ export async function add(options: any) {
     'statuses',
   ]
 
+  const packageManager = await getPackageManager()
+  const action = packageManager === 'npm' ? 'i ' : 'add '
+
   for (const component of components) {
     if (component.name === options.component) {
       if (onlyChildren.includes(options.component)) {
-        // Install only child components
         if (component.children) {
           for (const child of component.children) {
             await createComponent(child.name)
           }
         }
       } else {
-        // Install the main component and its children
+        await additionalDeps(component.name, packageManager, action)
         await createComponent(component.name)
         if (component.children) {
           for (const child of component.children) {

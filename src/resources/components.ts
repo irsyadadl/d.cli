@@ -79,6 +79,7 @@ export const components = [
       { name: 'input-otp' },
     ],
   },
+  { name: 'input-otp' },
   { name: 'form' },
   { name: 'text-field', children: [{ name: 'field' }] },
   { name: 'radio', children: [{ name: 'field' }] },

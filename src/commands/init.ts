@@ -5,6 +5,8 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import fetch from 'node-fetch'
 import chalk from 'chalk'
+import { getPackageManager } from '@/src/utils/get-package-manager'
+import ora from 'ora'
 
 // Define __filename and __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url)
@@ -16,13 +18,13 @@ const resourceDir = path.resolve(__dirname, '../src/resources')
 export async function init() {
   const cssPath = {
     laravel: 'resources/css/app.css',
+    vite: 'src/index.css',
     nextHasSrc: 'src/app/globals.css',
     nextNoSrc: 'app/globals.css',
     other: 'styles/app.css',
   }
 
   console.log('Initializing...')
-
   // Check if either tailwind.config.ts or tailwind.config.js exists
   const configJsExists = fs.existsSync('tailwind.config.js')
   const configTsExists = fs.existsSync('tailwind.config.ts')
@@ -43,6 +45,7 @@ export async function init() {
     choices: [
       { name: 'Next.js', value: 'Next.js' },
       { name: 'Laravel', value: 'Laravel' },
+      { name: 'Vite', value: 'Vite' },
       { name: 'Other', value: 'Other' },
     ],
   })
@@ -54,6 +57,11 @@ export async function init() {
     uiFolder = path.join(componentsFolder, 'ui')
     cssLocation = cssPath.laravel
     configSourcePath = path.join(resourceDir, 'tailwind-config/tailwind.config.laravel.stub')
+  } else if (projectType === 'Vite') {
+    componentsFolder = 'src/components'
+    uiFolder = path.join(componentsFolder, 'ui')
+    cssLocation = cssPath.vite
+    configSourcePath = path.join(resourceDir, 'tailwind-config/tailwind.config.vite.stub')
   } else if (projectType === 'Next.js') {
     const hasSrc = await confirm({
       message: 'Does this project have a src directory?',
@@ -98,7 +106,7 @@ export async function init() {
     try {
       const cssContent = fs.readFileSync(cssSourcePath, 'utf8')
       console.log(`Read CSS content from ${cssSourcePath}`)
-      fs.writeFileSync(cssLocation, cssContent, { flag: 'w' }) // Overwrite the existing CSS file
+      fs.writeFileSync(cssLocation, cssContent, { flag: 'w' })
       console.log(`CSS file copied to ${cssLocation}`)
     } catch (error) {
       // @ts-ignore
@@ -128,20 +136,8 @@ export async function init() {
   }
 
   // Ask for preferred package manager
-  const packageManager = await select({
-    message: 'Which package manager do you want to use for installing dependencies?',
-    choices: [
-      { name: 'npm', value: 'npm' },
-      { name: 'yarn', value: 'yarn' },
-      { name: 'pnpm', value: 'pnpm' },
-      { name: 'bun', value: 'bun' },
-    ],
-  })
-
-  console.log('Installing dependencies...')
-  const installCommand =
-    packageManager === 'bun' || packageManager === 'yarn' ? `${packageManager} add ` : `${packageManager} install `
-
+  const spinner = ora(`Initializing D...`).start()
+  const packageManager = await getPackageManager()
   const packages = [
     'react-aria-components',
     'tailwindcss-react-aria-components',
@@ -150,21 +146,25 @@ export async function init() {
     'clsx',
     '@irsyadadl/paranoid',
     'tailwindcss-animate',
-    'embla-carousel-react',
-    'cmdk',
     'framer-motion',
-    'input-otp',
-    'sonner',
   ]
     .map((component) => component)
     .join(' ')
-  const child = spawn(installCommand + packages, {
-    stdio: 'inherit',
+
+  const action = packageManager === 'npm' ? 'i ' : 'add '
+  const installCommand = `${packageManager} ${action} ${packages}`
+  const child = spawn(installCommand, {
+    stdio: 'ignore',
     shell: true,
   })
 
   // Wait for the installation to complete before proceeding
-  await new Promise((resolve) => child.on('close', resolve))
+  await new Promise<void>((resolve) => {
+    child.on('close', () => {
+      spinner.stop()
+      resolve()
+    })
+  })
 
   const fileUrl = 'https://raw.githubusercontent.com/irsyadadl/d.irsyad.co/master/components/ui/primitive.tsx'
   const response = await fetch(fileUrl)
