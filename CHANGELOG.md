@@ -1,5 +1,12 @@
 
 
+## [0.8.0](https://github.com/irsyadadl/d.cli/compare/v0.7.0...v0.8.0) (2024-07-09)
+
+
+### Features
+
+* no need to pass `--component` when adding new component ([bbe10b1](https://github.com/irsyadadl/d.cli/commit/bbe10b128ec15355021e676302941f801e4a2346))
+
 ## [0.7.0](https://github.com/irsyadadl/d.cli/compare/v0.6.0...v0.7.0) (2024-07-09)
 
 
