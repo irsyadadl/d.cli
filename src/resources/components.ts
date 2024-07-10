@@ -105,6 +105,11 @@ export const components = [
     children: [{ name: 'button' }, { name: 'separator' }, { name: 'field' }],
   },
   {
+    name: 'breadcrumbs',
+    children: [{ name: 'link' }],
+  },
+  { name: 'link' },
+  {
     name: 'overlays',
     children: [
       { name: 'button' },
@@ -180,4 +185,5 @@ export const components = [
   { name: 'toaster' },
   { name: 'surfaces', children: [{ name: 'card' }] },
   { name: 'card' },
+  { name: 'color' },
 ]
