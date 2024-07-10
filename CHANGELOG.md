@@ -1,5 +1,12 @@
 
 
+## [0.9.0](https://github.com/irsyadadl/d.cli/compare/v0.8.0...v0.9.0) (2024-07-10)
+
+
+### Features
+
+* add color, breadcrumbs and link ([18e59da](https://github.com/irsyadadl/d.cli/commit/18e59da8551c21c5f5bfabda7b8e7b39625127cc))
+
 ## [0.8.0](https://github.com/irsyadadl/d.cli/compare/v0.7.0...v0.8.0) (2024-07-09)
 
 
