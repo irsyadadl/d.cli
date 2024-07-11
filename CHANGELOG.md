@@ -1,5 +1,12 @@
 
 
+## [0.12.1](https://github.com/irsyadadl/d.cli/compare/v0.12.0...v0.12.1) (2024-07-11)
+
+
+### Bug Fixes
+
+* fix initialization command ([6547c31](https://github.com/irsyadadl/d.cli/commit/6547c313b80521cf73534c2dbc1dab5a797a0fbf))
+
 ## [0.12.0](https://github.com/irsyadadl/d.cli/compare/v0.10.0...v0.12.0) (2024-07-11)
 
 
