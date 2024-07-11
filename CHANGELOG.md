@@ -1,5 +1,17 @@
 
 
+## [0.12.0](https://github.com/irsyadadl/d.cli/compare/v0.10.0...v0.12.0) (2024-07-11)
+
+
+### Features
+
+* fix adding component ([524b993](https://github.com/irsyadadl/d.cli/commit/524b9937ef4d40123bccad8f2929b4cefb70742f))
+
+
+### Refactors
+
+* formatting ([0fbd211](https://github.com/irsyadadl/d.cli/commit/0fbd2114fdba39947e5a013017a5a99780f6e331))
+
 ## [0.11.0](https://github.com/irsyadadl/d.cli/compare/v0.10.0...v0.11.0) (2024-07-11)
 
 
