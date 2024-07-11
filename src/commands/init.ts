@@ -149,7 +149,7 @@ export async function init() {
 
   spinner.start(`Installing dependencies...`)
   const child = spawn(installCommand, {
-    stdio: 'ignore',
+    stdio: 'pipe',
     shell: true,
   })
 
