@@ -1,5 +1,12 @@
 
 
+## [0.10.0](https://github.com/irsyadadl/d.cli/compare/v0.9.0...v0.10.0) (2024-07-11)
+
+
+### Features
+
+* add more components to cli ([c79a9c3](https://github.com/irsyadadl/d.cli/commit/c79a9c36f5a0092e45aec536dd3d667391bd7bc6))
+
 ## [0.9.0](https://github.com/irsyadadl/d.cli/compare/v0.8.0...v0.9.0) (2024-07-10)
 
 
