@@ -15,8 +15,8 @@
   "scripts": {
     "dev": "tsup --watch",
     "prepare": "husky",
-    "remove-packages": "npm uninstall @irsyadadl/paranoid clsx cmdk embla-carousel-react framer-motion input-otp react-aria-components sonner tailwind-merge tailwind-variants tailwindcss-animate tailwindcss-react-aria-components",
-    "clean": "rimraf d.json && rimraf src/styles && rimraf src/index.css &&  rimraf src/app && rimraf styles/app.css && rimraf src/app/globals.css && rimraf app/globals.css && rimraf src/components && rimraf styles && rimraf resources && rimraf src/components && rimraf components && rimraf dist && npm run remove-packages",
+    "rp": "npm uninstall @irsyadadl/paranoid clsx cmdk embla-carousel-react framer-motion input-otp react-aria-components sonner tailwind-merge tailwind-variants tailwindcss-animate tailwindcss-react-aria-components",
+    "clean": "rimraf d.json && rimraf src/styles && rimraf src/index.css &&  rimraf src/app && rimraf styles/app.css && rimraf src/app/globals.css && rimraf app/globals.css && rimraf src/components && rimraf styles && rimraf resources && rimraf src/components && rimraf components && npm run rp",
     "build": "tsup && npm run format",
     "start": "tsc && npm link",
     "format": "prettier --write \"src/**/*.ts\"",
@@ -42,8 +42,8 @@
     "@types/node": "^20.14.10",
     "husky": "^9.0.11",
     "prettier": "^3.3.2",
-    "release-it": "^17.4.1",
-    "rimraf": "^5.0.8",
+    "release-it": "^17.5.0",
+    "rimraf": "^5.0.9",
     "tsup": "^8.1.0",
     "typescript": "^5.5.3"
   },

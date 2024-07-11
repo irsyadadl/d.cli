@@ -1,31 +1,16 @@
 export const components = [
   { name: 'button' },
-  {
-    name: 'file-trigger',
-    children: [{ name: 'button' }],
-  },
-  {
-    name: 'toggle-button',
-    children: [{ name: 'button' }],
-  },
-  {
-    name: 'buttons',
-    children: [{ name: 'button' }, { name: 'file-trigger' }, { name: 'toggle-button' }],
-  },
-  {
-    name: 'text-field',
-    children: [{ name: 'field' }],
-  },
+  { name: 'dropdown' },
+  { name: 'dialog' },
+  { name: 'dynamic-overlay' },
+  { name: 'field' },
+  { name: 'file-trigger', children: [{ name: 'button' }] },
+  { name: 'toggle-button', children: [{ name: 'button' }] },
+  { name: 'buttons', children: [{ name: 'file-trigger' }, { name: 'toggle-button' }] },
+  { name: 'text-field', children: [{ name: 'field' }] },
   {
     name: 'collections',
-    children: [
-      { name: 'menu' },
-      { name: 'list-box' },
-      { name: 'tabs' },
-      { name: 'tag-group' },
-      { name: 'table' },
-      { name: 'dropdown' },
-    ],
+    children: [{ name: 'menu' }, { name: 'list-box' }, { name: 'tabs' }, { name: 'tag-group' }, { name: 'table' }],
   },
   { name: 'menu', children: [{ name: 'dropdown' }] },
   { name: 'list-box', children: [{ name: 'dropdown' }] },
@@ -36,29 +21,13 @@ export const components = [
   { name: 'table', children: [{ name: 'checkbox' }] },
   {
     name: 'date-and-time',
-    children: [
-      { name: 'calendar' },
-      { name: 'date-field' },
-      { name: 'date-picker' },
-      { name: 'time-field' },
-      { name: 'button' },
-      { name: 'popover' },
-      { name: 'field' },
-      { name: 'dialog' },
-    ],
+    children: [{ name: 'date-field' }, { name: 'date-picker' }, { name: 'popover' }],
   },
-  { name: 'calendar' },
+  { name: 'calendar', children: [{ name: 'button' }] },
   { name: 'date-field' },
   {
     name: 'date-picker',
-    children: [
-      { name: 'date-field' },
-      { name: 'popover' },
-      { name: 'field' },
-      { name: 'calendar' },
-      { name: 'button' },
-      { name: 'dialog' },
-    ],
+    children: [{ name: 'popover' }, { name: 'field' }, { name: 'calendar' }, { name: 'dynamic-overlay' }],
   },
   { name: 'time-field', children: [{ name: 'field' }, { name: 'date-field' }] },
   { name: 'drag-and-drop', children: [{ name: 'drop-zone' }] },
@@ -68,7 +37,6 @@ export const components = [
     children: [
       { name: 'form' },
       { name: 'text-field' },
-      { name: 'field' },
       { name: 'radio' },
       { name: 'checkbox' },
       { name: 'textarea' },
@@ -111,15 +79,7 @@ export const components = [
   { name: 'link' },
   {
     name: 'overlays',
-    children: [
-      { name: 'button' },
-      { name: 'dialog' },
-      { name: 'modal' },
-      { name: 'sheet' },
-      { name: 'drawer' },
-      { name: 'popover' },
-      { name: 'tooltip' },
-    ],
+    children: [{ name: 'modal' }, { name: 'sheet' }, { name: 'drawer' }, { name: 'popover' }, { name: 'tooltip' }],
   },
   {
     name: 'modal',
@@ -139,43 +99,19 @@ export const components = [
   },
   {
     name: 'pickers',
-    children: [
-      { name: 'combo-box' },
-      { name: 'select' },
-      { name: 'dropdown' },
-      { name: 'field' },
-      { name: 'list-box' },
-      { name: 'popover' },
-      { name: 'button' },
-      { name: 'modal' },
-    ],
+    children: [{ name: 'combo-box' }, { name: 'select' }, { name: 'list-box' }, { name: 'popover' }],
   },
   {
     name: 'combo-box',
-    children: [
-      { name: 'select' },
-      { name: 'dropdown' },
-      { name: 'field' },
-      { name: 'list-box' },
-      { name: 'popover' },
-      { name: 'button' },
-      { name: 'modal' },
-    ],
+    children: [{ name: 'field' }, { name: 'list-box' }, { name: 'popover' }],
   },
   {
     name: 'select',
-    children: [{ name: 'dropdown' }, { name: 'field' }, { name: 'list-box' }, { name: 'popover' }, { name: 'modal' }],
+    children: [{ name: 'field' }, { name: 'list-box' }, { name: 'popover' }],
   },
   {
     name: 'statuses',
-    children: [
-      { name: 'badge' },
-      { name: 'progress-bar' },
-      { name: 'meter' },
-      { name: 'note' },
-      { name: 'field' },
-      { name: 'toaster' },
-    ],
+    children: [{ name: 'badge' }, { name: 'progress-bar' }, { name: 'meter' }, { name: 'note' }, { name: 'toaster' }],
   },
 
   { name: 'badge' },
@@ -185,5 +121,13 @@ export const components = [
   { name: 'toaster' },
   { name: 'surfaces', children: [{ name: 'card' }] },
   { name: 'card' },
-  { name: 'color' },
+  {
+    name: 'colors',
+    children: [{ name: 'color-picker' }],
+  },
+  {
+    name: 'color-picker',
+    children: [{ name: 'color' }, { name: 'select' }, { name: 'slider' }, { name: 'dynamic-overlay' }],
+  },
+  { name: 'color', children: [{ name: 'field' }] },
 ]

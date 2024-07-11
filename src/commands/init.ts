@@ -44,7 +44,6 @@ export async function init() {
       { name: 'Other', value: 'Other' },
     ],
   })
-  const spinner = ora(`Initializing D...`).start()
   let componentsFolder, uiFolder, cssLocation, configSourcePath
 
   if (projectType === 'Laravel') {
@@ -58,13 +57,18 @@ export async function init() {
     cssLocation = cssPath.vite
     configSourcePath = path.join(resourceDir, 'tailwind-config/tailwind.config.vite.stub')
   } else if (projectType === 'Next.js') {
-    const hasSrc = await confirm({
+    const projectTypeSrc = await select({
       message: 'Does this project have a src directory?',
+      choices: [
+        { name: 'Yes', value: true },
+        { name: 'No', value: false },
+      ],
       default: true,
     })
-    componentsFolder = hasSrc ? 'src/components' : 'components'
+    const hasSrc = projectTypeSrc ? 'src' : ''
+    componentsFolder = path.join(hasSrc, 'components')
     uiFolder = path.join(componentsFolder, 'ui')
-    cssLocation = hasSrc ? cssPath.nextHasSrc : cssPath.nextNoSrc
+    cssLocation = projectTypeSrc ? cssPath.nextHasSrc : cssPath.nextNoSrc
     configSourcePath = path.join(resourceDir, 'tailwind-config/tailwind.config.next.stub')
   } else {
     componentsFolder = await input({
@@ -78,6 +82,8 @@ export async function init() {
     })
     configSourcePath = path.join(resourceDir, 'tailwind-config/tailwind.config.next.stub')
   }
+
+  const spinner = ora(`Initializing D...`).start()
 
   // Ensure the components and UI folders exist
   if (!fs.existsSync(uiFolder)) {
@@ -111,7 +117,7 @@ export async function init() {
 
   // Check if the config source path exists
   if (!fs.existsSync(configSourcePath)) {
-    console.log(chalk.yellow(`Source Tailwind config file does not exist at ${configSourcePath}`))
+    spinner.warn(chalk.yellow(`Source Tailwind config file does not exist at ${configSourcePath}`))
     return
   }
 
@@ -145,6 +151,8 @@ export async function init() {
     shell: true,
   })
 
+  spinner.start(`Installing dependencies...`)
+
   const fileUrl = 'https://raw.githubusercontent.com/irsyadadl/d.irsyad.co/master/components/ui/primitive.tsx'
   const response = await fetch(fileUrl)
   const fileContent = await response.text()
@@ -156,7 +164,7 @@ export async function init() {
   fs.writeFileSync('d.json', JSON.stringify(config, null, 2))
   spinner.succeed('Configuration saved to d.json')
 
-  spinner.succeed('Installation complete. ')
+  spinner.succeed('Installation complete.')
 
   // Wait for the installation to complete before proceeding
   await new Promise<void>((resolve) => {
@@ -165,4 +173,5 @@ export async function init() {
       resolve()
     })
   })
+  spinner.stop()
 }
