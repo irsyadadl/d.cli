@@ -1,5 +1,12 @@
 
 
+## [0.12.3](https://github.com/irsyadadl/d.cli/compare/v0.12.2...v0.12.3) (2024-07-13)
+
+
+### Bug Fixes
+
+* make the init stdio to be `inherit` ([4d0b3cc](https://github.com/irsyadadl/d.cli/commit/4d0b3cc368774d1659281c9e3a1ecb44f9d44402))
+
 ## [0.12.2](https://github.com/irsyadadl/d.cli/compare/v0.12.1...v0.12.2) (2024-07-13)
 
 
