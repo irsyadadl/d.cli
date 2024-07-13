@@ -1,5 +1,13 @@
 
 
+## [0.12.2](https://github.com/irsyadadl/d.cli/compare/v0.12.1...v0.12.2) (2024-07-13)
+
+
+### Bug Fixes
+
+* fix error ([8184ea3](https://github.com/irsyadadl/d.cli/commit/8184ea3c6846fa83e78942742d0b37fea243cd91))
+* npm i ([2a3f29a](https://github.com/irsyadadl/d.cli/commit/2a3f29a7fee7d2502b6a1c37e2193927b7316b5f))
+
 ## [0.12.1](https://github.com/irsyadadl/d.cli/compare/v0.12.0...v0.12.1) (2024-07-11)
 
 
