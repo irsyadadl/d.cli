@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import { checkbox } from '@inquirer/prompts'
 import { components, namespaces } from '../resources/components'
 import { getWriteComponentPath, writeFile } from '../utils'
 import chalk from 'chalk'
@@ -56,6 +57,7 @@ async function processComponent(
 }
 
 export async function add(options: any) {
+  const { component, skip } = options
   const configFilePath = path.join(process.cwd(), 'd.json')
   if (!fs.existsSync(configFilePath)) {
     console.error(
@@ -64,30 +66,38 @@ export async function add(options: any) {
     return
   }
 
+  let selectedComponents = component ? [component] : [] // Ensure it's always an array
+  if (!component) {
+    const choices = components.map((comp) => ({ name: comp.name, value: comp.name }))
+    selectedComponents = await checkbox({
+      message: 'Select components to add:',
+      choices: choices,
+    })
+  }
+
   const packageManager = await getPackageManager()
   const action = packageManager === 'npm' ? 'i ' : 'add '
   const targetComponent = components.find((comp) => comp.name === options.component)
-  if (!targetComponent) {
-    console.log(chalk.yellow('No component found'))
-    return
-  }
 
   // Initialize a new set for each session
   const processed = new Set<string>()
+  for (const componentName of selectedComponents) {
+    const targetComponent = components.find((comp) => comp.name === componentName)
+    if (!targetComponent) {
+      console.log(chalk.yellow('No component found'))
+      return
+    }
+    console.log(`Starting to add ${componentName}...`)
 
-  console.log(`Starting to add ${options.component}...`)
-
-  if (namespaces.includes(options.component)) {
-    // Only process the children of the component
-    if (targetComponent.children) {
+    if (namespaces.includes(componentName) && targetComponent.children) {
+      // Only process the children of the component
       for (const child of targetComponent.children) {
         await processComponent(child.name, packageManager, action, processed, components)
       }
+    } else {
+      // Process the component and all its children
+      await processComponent(componentName, packageManager, action, processed, components)
     }
-  } else {
-    // Process the component and all its children
-    await processComponent(targetComponent.name, packageManager, action, processed, components)
   }
-
   console.log(chalk.green(`✔ All the goodies in ${options.component} are now locked and loaded.`))
 }

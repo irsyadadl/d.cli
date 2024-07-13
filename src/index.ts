@@ -7,7 +7,7 @@ import { init } from './commands/init'
 program.command('init').option('--skip <type>', 'Skip a specific step').action(init)
 
 program
-  .command('add <component>')
+  .command('add [component]')
   .option('--skip <type>', 'Skip')
   .action(async (component, options) => {
     await add({ component, ...options })
