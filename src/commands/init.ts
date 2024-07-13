@@ -147,9 +147,9 @@ export async function init() {
   const action = packageManager === 'npm' ? 'i ' : 'add '
   const installCommand = `${packageManager} ${action} ${packages}`
 
-  spinner.start(`Installing dependencies...`)
+  spinner.info(`Installing dependencies...`)
   const child = spawn(installCommand, {
-    stdio: 'pipe',
+    stdio: 'inherit',
     shell: true,
   })
 
