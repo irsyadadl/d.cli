@@ -1,5 +1,12 @@
 
 
+## [0.12.5](https://github.com/irsyadadl/d.cli/compare/v0.12.4...v0.12.5) (2024-07-13)
+
+
+### Bug Fixes
+
+* fix loading init ([d67408d](https://github.com/irsyadadl/d.cli/commit/d67408df1845f22f13d0b020c09474183d0dfac9))
+
 ## [0.12.4](https://github.com/irsyadadl/d.cli/compare/v0.12.3...v0.12.4) (2024-07-13)
 
 
