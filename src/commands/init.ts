@@ -152,7 +152,11 @@ export async function init() {
     stdio: 'inherit',
     shell: true,
   })
-
+  await new Promise<void>((resolve) => {
+    child.on('close', () => {
+      resolve()
+    })
+  })
   const fileUrl = 'https://raw.githubusercontent.com/irsyadadl/d.irsyad.co/master/components/ui/primitive.tsx'
   const response = await fetch(fileUrl)
   const fileContent = await response.text()
@@ -165,12 +169,6 @@ export async function init() {
   spinner.succeed('Configuration saved to d.json')
 
   // Wait for the installation to complete before proceeding
-  await new Promise<void>((resolve) => {
-    spinner.succeed('Installation complete.')
-    child.on('close', () => {
-      spinner.stop()
-      resolve()
-    })
-  })
+  spinner.succeed('Installation complete.')
   spinner.stop()
 }
