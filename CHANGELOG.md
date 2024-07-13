@@ -1,5 +1,12 @@
 
 
+## [0.12.4](https://github.com/irsyadadl/d.cli/compare/v0.12.3...v0.12.4) (2024-07-13)
+
+
+### Bug Fixes
+
+* fix the hell permissions ([cd65da0](https://github.com/irsyadadl/d.cli/commit/cd65da0805216cccd6f612e241e82f5c5282a2f4))
+
 ## [0.12.3](https://github.com/irsyadadl/d.cli/compare/v0.12.2...v0.12.3) (2024-07-13)
 
 
