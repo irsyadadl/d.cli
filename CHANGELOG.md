@@ -1,5 +1,12 @@
 
 
+## [0.13.0](https://github.com/irsyadadl/d.cli/compare/v0.12.5...v0.13.0) (2024-07-13)
+
+
+### Features
+
+* add select component ([8c6ea65](https://github.com/irsyadadl/d.cli/commit/8c6ea658184d4e15c56993a2ec66bd1622f81f63))
+
 ## [0.12.5](https://github.com/irsyadadl/d.cli/compare/v0.12.4...v0.12.5) (2024-07-13)
 
 
