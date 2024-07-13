@@ -1,5 +1,12 @@
 
 
+## [0.13.1](https://github.com/irsyadadl/d.cli/compare/v0.13.0...v0.13.1) (2024-07-13)
+
+
+### Bug Fixes
+
+* refactoring stub for tailwind config ([44848c7](https://github.com/irsyadadl/d.cli/commit/44848c7357ea966fc87764e069fba2e9e6a4023a))
+
 ## [0.13.0](https://github.com/irsyadadl/d.cli/compare/v0.12.5...v0.13.0) (2024-07-13)
 
 
