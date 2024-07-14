@@ -66,12 +66,19 @@ export async function add(options: any) {
     return
   }
 
-  let selectedComponents = component ? [component] : [] // Ensure it's always an array
+  const exclude = ['dialog', 'primitive', 'field', 'dynamic-overlay', 'dropdown'] // Add all the names you want to exclude here
+  let selectedComponents = component ? [component] : []
   if (!component) {
-    const choices = components.map((comp) => ({ name: comp.name, value: comp.name }))
+    const choices = components
+      .filter((comp) => !exclude.includes(comp.name))
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((comp) => ({ name: comp.name, value: comp.name }))
     selectedComponents = await checkbox({
+      required: true,
       message: 'Select components to add:',
       choices: choices,
+      pageSize: 10,
+      loop: false,
     })
   }
 
