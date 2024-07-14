@@ -1,5 +1,12 @@
 
 
+## [0.14.0](https://github.com/irsyadadl/d.cli/compare/v0.13.1...v0.14.0) (2024-07-14)
+
+
+### Features
+
+* add new component and make the cli better ([531eabd](https://github.com/irsyadadl/d.cli/commit/531eabd64819f4d42fa15f35a4591244188c707f))
+
 ## [0.13.1](https://github.com/irsyadadl/d.cli/compare/v0.13.0...v0.13.1) (2024-07-13)
 
 
