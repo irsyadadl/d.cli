@@ -1,5 +1,12 @@
 
 
+## [0.14.2](https://github.com/irsyadadl/d.cli/compare/v0.14.1...v0.14.2) (2024-07-15)
+
+
+### Refactors
+
+* add new component `grid-list` ([f368e1d](https://github.com/irsyadadl/d.cli/commit/f368e1d10998b93f13bd27624ff4167770745106))
+
 ## [0.14.1](https://github.com/irsyadadl/d.cli/compare/v0.14.0...v0.14.1) (2024-07-15)
 
 
