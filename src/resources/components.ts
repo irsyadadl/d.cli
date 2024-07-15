@@ -48,7 +48,14 @@ const components: any[] = [
   },
   {
     name: 'collections',
-    children: [{ name: 'menu' }, { name: 'list-box' }, { name: 'tabs' }, { name: 'tag-group' }, { name: 'table' }],
+    children: [
+      { name: 'menu' },
+      { name: 'grid-list' },
+      { name: 'list-box' },
+      { name: 'tabs' },
+      { name: 'tag-group' },
+      { name: 'table' },
+    ],
   },
   {
     name: 'date-and-time',
@@ -105,6 +112,7 @@ const components: any[] = [
   { name: 'tabs' },
   { name: 'tag-group', children: [{ name: 'field' }, { name: 'badge' }] },
   { name: 'table', children: [{ name: 'checkbox' }] },
+  { name: 'grid-list', children: [{ name: 'checkbox' }] },
 
   // ------------------------------------------------------------------------------------- //
   // ⌘ The children of Date and Time
