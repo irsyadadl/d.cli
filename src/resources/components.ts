@@ -77,7 +77,7 @@ const components: any[] = [
     name: 'statuses',
     children: [{ name: 'badge' }, { name: 'progress-bar' }, { name: 'meter' }, { name: 'note' }, { name: 'toaster' }],
   },
-  { name: 'surfaces', children: [{ name: 'card' }] },
+  { name: 'surfaces', children: [{ name: 'card' }, { name: 'grid' }] },
   { name: 'media', children: [{ name: 'avatar' }] },
   {
     name: 'colors',
@@ -150,6 +150,7 @@ const components: any[] = [
   // ⌘ The children of Surfaces
   // ------------------------------------------------------------------------------------- //
   { name: 'card' },
+  { name: 'grid' },
 
   // ------------------------------------------------------------------------------------- //
   // ⌘ The children of Media
