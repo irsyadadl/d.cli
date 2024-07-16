@@ -65,10 +65,6 @@ const config = withTV({
           DEFAULT: 'hsl(var(--muted))',
           fg: 'hsl(var(--muted-fg))',
         },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          fg: 'hsl(var(--accent-fg))',
-        },
         popover: {
           DEFAULT: 'hsl(var(--popover))',
           fg: 'hsl(var(--popover-fg))',
