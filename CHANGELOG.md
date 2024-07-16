@@ -1,5 +1,12 @@
 
 
+## [0.14.4](https://github.com/irsyadadl/d.cli/compare/v0.14.3...v0.14.4) (2024-07-16)
+
+
+### Refactors
+
+* remove unused color ([47644a4](https://github.com/irsyadadl/d.cli/commit/47644a4d194270114e69b430f04d0e7a9178b601))
+
 ## [0.14.3](https://github.com/irsyadadl/d.cli/compare/v0.14.2...v0.14.3) (2024-07-16)
 
 
