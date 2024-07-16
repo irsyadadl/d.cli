@@ -1,5 +1,12 @@
 
 
+## [0.14.3](https://github.com/irsyadadl/d.cli/compare/v0.14.2...v0.14.3) (2024-07-16)
+
+
+### Refactors
+
+* add visually hidden when installing pagination ([81ae380](https://github.com/irsyadadl/d.cli/commit/81ae380aedd538ee9a4db9d9b4f3a610c9cdaaf5))
+
 ## [0.14.2](https://github.com/irsyadadl/d.cli/compare/v0.14.1...v0.14.2) (2024-07-15)
 
 
