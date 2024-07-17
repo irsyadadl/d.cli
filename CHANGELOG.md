@@ -1,5 +1,12 @@
 
 
+## [0.14.5](https://github.com/irsyadadl/d.cli/compare/v0.14.4...v0.14.5) (2024-07-17)
+
+
+### Bug Fixes
+
+* fix bug need deps ([9549666](https://github.com/irsyadadl/d.cli/commit/95496660270a92e5ba34966ef0e6e30acafdb90a))
+
 ## [0.14.4](https://github.com/irsyadadl/d.cli/compare/v0.14.3...v0.14.4) (2024-07-16)
 
 
