@@ -8,6 +8,8 @@ export const additionalDeps = async (componentName: string, packageManager: stri
     carousel: 'embla-carousel-react',
     command: 'cmdk',
     'multi-select': 'cmdk',
+    pagination: 'react-aria',
+    'visually-hidden': 'react-aria',
   }
 
   const dependency = dependencies[componentName]
