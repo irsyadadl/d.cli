@@ -1,5 +1,12 @@
 
 
+## [0.14.6](https://github.com/irsyadadl/d.cli/compare/v0.14.5...v0.14.6) (2024-07-18)
+
+
+### Bug Fixes
+
+* deprecated ([592c025](https://github.com/irsyadadl/d.cli/commit/592c025f049c17433e59b1cc37bc1b84c2185032))
+
 ## [0.14.5](https://github.com/irsyadadl/d.cli/compare/v0.14.4...v0.14.5) (2024-07-17)
 
 
